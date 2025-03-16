@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog</title>
+</head>
+<body>
+    <header>
+        <h1>Mi Blog de Viajes</h1>
+        <nav>
+            <a href="{% url 'home' %}">Inicio</a>
+            <a href="{% url 'agregar_transporte' %}">Agregar Transporte</a>
+            <a href="{% url 'agregar_alojamiento' %}">Agregar Alojamiento</a>
+            <a href="{% url 'agregar_actividades' %}">Agregar Actividades</a>
+            <a href="{% url 'buscar' %}">Buscar Actividades</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
