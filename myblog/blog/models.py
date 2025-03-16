@@ -1,25 +1,25 @@
 from django.db import models
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
+class Transporte(models.Model):
+    tipo = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return self.name
+        return self.tipo
 
-class Post(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
-
-class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.CharField(max_length=100)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+class Alojamiento(models.Model):
+    nombre = models.CharField(max_length=100)
+    ubicacion = models.CharField(max_length=100)
+    capacidad = models.IntegerField()
 
     def __str__(self):
-        return f"Comment by {self.author} on {self.post.title}"
+        return self.nombre
+
+class Actividades(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    duracion = models.IntegerField()  # Duración en horas
+
+    def __str__(self):
+        return self.nombre
