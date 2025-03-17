@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from ..blog.models import Transporte, Alojamiento, Actividades
-from ..blog.forms import TransporteForm, AlojamientoForm, ActividadesForm, BusquedaForm
+from .blog.models import Transporte, Alojamiento, Actividades
+from .blog.forms import TransporteForm, AlojamientoForm, ActividadesForm, BusquedaForm
 
 def home(request):
     return render(request, 'blog/home.html')
