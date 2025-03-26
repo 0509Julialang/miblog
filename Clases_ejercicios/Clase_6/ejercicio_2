@@ -1,0 +1,30 @@
+def es_multiplo(numero_1: float, numero_2: float) -> float | None:
+    try:
+        division = numero_1 / numero_2
+    except ZeroDivisionError:
+        print("No se puede dividir por cero")
+        return None
+    except Exception as error:
+        print("Error", type(error))
+    else:
+        return division
+
+def introducir_numeros() -> tuple:
+    while True:
+        try:
+            numero_1 = float(input("Primer número: "))
+            numero_2 = float(input("Segundo número: "))
+        except ValueError:
+            print("Uno de los datos no es un número")
+            continue
+        return numero_1, numero_2
+
+def main():
+    numero_1, numero_2 = introducir_numeros()
+    resultado = dividir(numero_1, numero_2)
+    if resultado:
+        print(resultado)
+    else:
+        print("No se pudo realizar la división")
+
+main()
