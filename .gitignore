@@ -58,7 +58,11 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
+<<<<<<< HEAD
 db.sqlite3
+=======
+# db.sqlite3
+>>>>>>> aa27ed8aec84df683738a9c7df353314b0110f53
 db.sqlite3-journal
 
 # Flask stuff:
@@ -167,5 +171,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+<<<<<<< HEAD
+=======
+# Ruff stuff:
+.ruff_cache/
+
+>>>>>>> aa27ed8aec84df683738a9c7df353314b0110f53
 # PyPI configuration file
 .pypirc
