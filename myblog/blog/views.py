@@ -8,6 +8,9 @@ from .forms import TransporteForm, AlojamientoForm
 def home(request):
      return render(request, 'blog/home.html')
  
+def about(request):
+     return render(request,  'blog/about.html', {'title': 'Acerca de'})
+
 def agregar_transporte(request):
      if request.method == 'POST':
          form = TransporteForm(request.POST)
