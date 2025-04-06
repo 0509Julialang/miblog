@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Transporte, Alojamiento, Actividades
-from myblog.forms import TransporteForm, AlojamientoForm, ActividadesForm, BusquedaForm
+from blog.forms import TransporteForm, AlojamientoForm, ActividadesForm, BusquedaForm
+from .forms import TransporteForm, AlojamientoForm
  
  
 
