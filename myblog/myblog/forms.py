@@ -1,5 +1,5 @@
 from django import forms
-from .models import Transporte, Alojamiento, Actividades
+from ..blog.models import Transporte, Alojamiento, Actividades
 
 class TransporteForm(forms.ModelForm):
     class Meta:
