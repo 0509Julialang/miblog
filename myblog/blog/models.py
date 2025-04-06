@@ -20,6 +20,8 @@ class Actividades(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     duracion = models.IntegerField()  # Duración en horas
+    class Meta:
+        db_table = 'my_custom_blog_actividades'
 
     def __str__(self):
         return self.nombre
