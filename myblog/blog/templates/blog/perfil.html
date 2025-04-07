@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Perfil de {{ perfil.usuario.username }}</h2>
+<div>
+    {% if perfil.foto %}
+        <img src="{{ perfil.foto.url }}" alt="Foto de perfil" width="150">
+    {% endif %}
+    <p>Teléfono: {{ perfil.telefono }}</p>
+    <p>Dirección: {{ perfil.direccion }}</p>
+    <p>Fecha de nacimiento: {{ perfil.fecha_nacimiento }}</p>
+    <a href="{% url 'editar_perfil' %}" class="btn btn-primary">Editar Perfil</a>
+</div>
+
+<h3>Tus Reservas</h3>
+<!-- Aquí puedes mostrar las reservas relacionadas con Transportes, Alojamientos y Actividades -->
+{% endblock %}

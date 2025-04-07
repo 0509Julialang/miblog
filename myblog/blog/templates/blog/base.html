@@ -15,6 +15,13 @@
             <a href="{% url 'agregar_alojamiento' %}">Agregar Alojamiento</a>
             <a href="{% url 'agregar_actividades' %}">Agregar Actividades</a>
             <a href="{% url 'buscar' %}">Buscar Actividades</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'perfil' %}">Perfil</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        {% else %}
+            <a href="{% url 'login' %}">Iniciar Sesión</a>
+            <a href="{% url 'registro' %}">Registrarse</a>
+        {% endif %}
         </nav>
     </header>
     <main>

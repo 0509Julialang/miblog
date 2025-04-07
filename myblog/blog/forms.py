@@ -1,5 +1,6 @@
 from django import forms
 from blog.models import Transporte, Alojamiento, Actividades
+from .models import Perfil
 
 class TransporteForm(forms.ModelForm):
     class Meta:
@@ -18,3 +19,11 @@ class ActividadesForm(forms.ModelForm):
 
 class BusquedaForm(forms.Form):
     query = forms.CharField(label='Buscar', max_length=100)
+
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ['telefono', 'direccion', 'fecha_nacimiento', 'foto']
+        widgets = {
+            'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
+        }
