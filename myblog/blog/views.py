@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Perfil
 from .forms import PerfilForm
+from .forms import RegistroForm
 from .models import Transporte, Alojamiento, Actividades
 from blog.forms import TransporteForm, AlojamientoForm, ActividadesForm, BusquedaForm
 from .forms import TransporteForm, AlojamientoForm
@@ -78,14 +80,15 @@ def login_view(request):
 
 def registro_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistroForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect('perfil')
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Cuenta creada para {username}!')
+            return redirect('login')
     else:
-        form = UserCreationForm()
-    return render(request, 'registration/registro.html')
+        form = RegistroForm()
+    return render(request, 'registration/registro.html', {'form': form})
 
 @login_required
 def perfil_view(request):
