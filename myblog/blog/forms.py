@@ -25,7 +25,7 @@ class BusquedaForm(forms.Form):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['telefono', 'direccion', 'fecha_nacimiento', 'foto']
+        fields = ['usuario', 'imagen', 'telefono', 'direccion', 'fecha_nacimiento']
         widgets = {
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
         }

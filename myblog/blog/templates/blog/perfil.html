@@ -1,10 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'blog/base.html' %}
+
+{% block title %}Perfil de Usuario{% endblock %}
 
 {% block content %}
 <h2>Perfil de {{ perfil.usuario.username }}</h2>
 <div>
-    {% if perfil.foto %}
-        <img src="{{ perfil.foto.url }}" alt="Foto de perfil" width="150">
+    {% if perfil.imagen %}
+        <img src="{{ perfil.imagen.url }}" alt="Foto de perfil">
     {% endif %}
     <p>Teléfono: {{ perfil.telefono }}</p>
     <p>Dirección: {{ perfil.direccion }}</p>

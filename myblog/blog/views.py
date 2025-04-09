@@ -104,8 +104,15 @@ def editar_perfil(request):
             return redirect('perfil')
     else:
         form = PerfilForm(instance=request.user.perfil)
-    return render(request, 'editar_perfil.html', {'form': form})
+    return render(request, 'blog/editar_perfil.html', {'form': form})
 
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def perfil_view(request):
+    if not hasattr(request.user, 'perfil'):
+        perfil.objects.create(usuario=request.user)
+    perfil = request.user.perfil
+    print(perfil.imagen)
+    return render(request, 'blog/perfil.html', {'perfil': perfil})

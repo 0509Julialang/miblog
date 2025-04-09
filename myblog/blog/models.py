@@ -37,17 +37,19 @@ class Perfil(models.Model):
     telefono = models.CharField(max_length=20, blank=True)
     direccion = models.TextField(blank=True)
     fecha_nacimiento = models.DateField(null=True, blank=True)
-    foto = models.ImageField(upload_to='perfiles/', null=True, blank=True)
+    imagen = models.ImageField(default='default.jpg', upload_to='perfil_pics')
+    bio = models.TextField(max_length=500, blank=True)
+    ubicacion = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
         return f'Perfil de {self.usuario.username}'
 
 # Crear/actualizar el perfil automáticamente
-@receiver(post_save, sender=User)
-def crear_perfil_usuario(sender, instance, created, **kwargs):
-    if created:
-        Perfil.objects.create(usuario=instance)
+#@receiver(post_save, sender=User)
+#def crear_perfil_usuario(sender, instance, created, **kwargs):
+#    if created:
+#       Perfil.objects.create(usuario=instance)
 
-@receiver(post_save, sender=User)
-def guardar_perfil_usuario(sender, instance, **kwargs):
-    instance.perfil.save()    
+#@receiver(post_save, sender=User)
+#def guardar_perfil_usuario(sender, instance, **kwargs):
+#    instance.perfil.save()    
