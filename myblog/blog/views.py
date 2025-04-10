@@ -10,7 +10,6 @@ from .models import Transporte, Alojamiento, Actividades
 from blog.forms import TransporteForm, AlojamientoForm, ActividadesForm, BusquedaForm
 from .forms import TransporteForm, AlojamientoForm
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 @login_required
 def mi_vista_protegida(request):
@@ -23,35 +22,45 @@ def home(request):
 def about(request):
      return render(request,  'blog/about.html', {'title': 'Acerca de'})
 
+@login_required
 def agregar_transporte(request):
-     if request.method == 'POST':
-         form = TransporteForm(request.POST)
-         if form.is_valid():
-             form.save()
-             return redirect('home')
-     else:
-         form = TransporteForm()
-     return render(request, 'blog/agregar_transporte.html', {'form': form})
+    if request.method == 'POST':
+        form = TransporteForm(request.POST)
+        if form.is_valid():
+            transporte = form.save(commit=False)
+            transporte.usuario = request.user
+            transporte.save()
+            return redirect('home')
+    else:
+        form = TransporteForm()
+    return render(request, 'blog/agregar_transporte.html', {'form': form})
  
+@login_required
 def agregar_alojamiento(request):
-     if request.method == 'POST':
-         form = AlojamientoForm(request.POST)
-         if form.is_valid():
-             form.save()
-             return redirect('home')
-     else:
-         form = AlojamientoForm()
-     return render(request, 'blog/agregar_alojamiento.html', {'form': form})
+    if request.method == 'POST':
+        form = AlojamientoForm(request.POST)
+        if form.is_valid():
+            alojamiento = form.save(commit=False)
+            alojamiento.usuario = request.user
+            alojamiento.save()
+            return redirect('home')
+    else:
+        form = AlojamientoForm()
+    return render(request, 'blog/agregar_alojamiento.html', {'form': form})
  
+@login_required
 def agregar_actividades(request):
-     if request.method == 'POST':
-         form = ActividadesForm(request.POST)
-         if form.is_valid():
-             form.save()
-             return redirect('home')
-     else:
-         form = ActividadesForm()
-     return render(request, 'blog/agregar_actividades.html', {'form': form})
+    if request.method == 'POST':
+        form = ActividadesForm(request.POST)
+        if form.is_valid():
+            actividad = form.save(commit=False)
+            actividad.usuario = request.user
+            actividad.save()
+            return redirect('home')
+    else:
+        form = ActividadesForm()
+    return render(request, 'blog/agregar_actividades.html', {'form': form})
+
  
 def buscar(request):
      if request.method == 'GET':
@@ -96,14 +105,25 @@ def perfil(request):
 
 @login_required
 def editar_perfil(request):
+    perfil, created = Perfil.objects.get_or_create(user=request.user)
+
     if request.method == 'POST':
-        form = PerfilForm(request.POST, request.FILES, instance=request.user.perfil)
+        form = PerfilForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
             form.save()
-            return redirect('perfil')
+            messages.success(request, "Perfil actualizado correctamente.")
+            return redirect('detalle_perfil')
+        else:
+            print(form.errors)
     else:
-        form = PerfilForm(instance=request.user.perfil)
+        form = PerfilForm(instance=perfil)
+
     return render(request, 'blog/editar_perfil.html', {'form': form})
+
+@login_required
+def detalle_perfil(request):
+    perfil = request.user.perfil
+    return render(request, 'blog/detalle_perfil.html', {'perfil': perfil})
 
 def logout_view(request):
     logout(request)
@@ -112,9 +132,8 @@ def logout_view(request):
 @login_required
 def perfil_view(request):
     if not hasattr(request.user, 'perfil'):
-        perfil.objects.create(usuario=request.user)
+        Perfil.objects.create(user=request.user)
     perfil = request.user.perfil
-    print(perfil.imagen)
     return render(request, 'blog/perfil.html', {'perfil': perfil})
 
 def itinerarios_view(request):

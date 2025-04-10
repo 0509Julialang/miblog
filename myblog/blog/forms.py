@@ -7,17 +7,17 @@ from django.contrib.auth.forms import UserCreationForm
 class TransporteForm(forms.ModelForm):
     class Meta:
         model = Transporte
-        fields = '__all__'
+        exclude = ['user']
 
 class AlojamientoForm(forms.ModelForm):
     class Meta:
         model = Alojamiento
-        fields = '__all__'
+        exclude = ['user']
 
 class ActividadesForm(forms.ModelForm):
     class Meta:
         model = Actividades
-        fields = '__all__'
+        exclude = ['user']
 
 class BusquedaForm(forms.Form):
     query = forms.CharField(label='Buscar', max_length=100)
@@ -25,7 +25,7 @@ class BusquedaForm(forms.Form):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['usuario', 'imagen', 'telefono', 'direccion', 'fecha_nacimiento']
+        fields = ['nombre', 'apellido', 'bio', 'imagen', 'telefono', 'direccion', 'fecha_nacimiento', ]
         widgets = {
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
         }
