@@ -1,0 +1,27 @@
+{% extends "itinerarios/base_itinerarios.html" %}
+
+{% block contenido_itinerarios %}
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h2>{{ itinerario.titulo }}</h2>
+            {% if request.user == itinerario.creado_por %}
+            <div>
+                <a href="{% url 'itinerarios:editar_itinerario' itinerario.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                <a href="{% url 'itinerarios:eliminar_itinerario' itinerario.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-body">
+        <p><strong>Ubicación:</strong> {{ itinerario.ubicacion }}</p>
+        <p><strong>Fecha:</strong> {{ itinerario.fecha_inicio }} - {{ itinerario.fecha_fin }}</p>
+        <hr>
+        <p>{{ itinerario.descripcion }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        Creado por {{ itinerario.creado_por.username }} el {{ itinerario.fecha_creacion }}
+    </div>
+</div>
+<a href="{% url 'itinerarios:lista' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+{% endblock %}

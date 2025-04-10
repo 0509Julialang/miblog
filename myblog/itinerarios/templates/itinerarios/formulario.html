@@ -1,0 +1,12 @@
+{% extends "itinerarios/base_itinerarios.html" %}
+
+{% block contenido_itinerarios %}
+<h2>{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Itinerario</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'itinerarios:lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

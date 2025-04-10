@@ -1,0 +1,27 @@
+{% extends "itinerarios/base_itinerarios.html" %}
+
+{% block contenido_itinerarios %}
+<h2>Mis Itinerarios</h2>
+<a href="{% url 'itinerarios:nuevo' %}" class="btn btn-primary mb-3">Nuevo Itinerario</a>
+
+<div class="list-group">
+    {% for itinerario in itinerarios %}
+    <div class="list-group-item">
+        <div class="d-flex justify-content-between">
+            <h5><a href="{% url 'itinerarios:detalle_itinerario' itinerario.pk %}">{{ itinerario.titulo }}</a></h5>
+            <div>
+                <a href="{% url 'itinerarios:editar_itinerario' itinerario.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                <a href="{% url 'itinerarios:eliminar_itinerario' itinerario.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+            </div>
+        </div>
+        <p class="mb-1">{{ itinerario.descripcion|truncatechars:100 }}</p>
+        <small>
+            {{ itinerario.fecha_inicio }} - {{ itinerario.fecha_fin }} | 
+            {{ itinerario.ubicacion }}
+        </small>
+    </div>
+    {% empty %}
+    <div class="alert alert-info">No tienes itinerarios creados.</div>
+    {% endfor %}
+</div>
+{% endblock %}

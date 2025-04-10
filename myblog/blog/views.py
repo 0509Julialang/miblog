@@ -18,7 +18,7 @@ def mi_vista_protegida(request):
     pass
  
 def home(request):
-     return render(request, 'blog/home.html')
+     return render(request, 'blog/base.html')
  
 def about(request):
      return render(request,  'blog/about.html', {'title': 'Acerca de'})
@@ -90,10 +90,9 @@ def registro_view(request):
         form = RegistroForm()
     return render(request, 'registration/registro.html', {'form': form})
 
-@login_required
-def perfil_view(request):
-    perfil = request.user.perfil
-    return render(request, 'perfil.html', {'perfil': perfil})
+def perfil(request):
+    return render(request, 'blog/perfil.html')
+     
 
 @login_required
 def editar_perfil(request):
@@ -110,9 +109,17 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+@login_required
 def perfil_view(request):
     if not hasattr(request.user, 'perfil'):
         perfil.objects.create(usuario=request.user)
     perfil = request.user.perfil
     print(perfil.imagen)
     return render(request, 'blog/perfil.html', {'perfil': perfil})
+
+def itinerarios_view(request):
+    return render(request, 'blog/itinerarios.html')
+
+def lista_itinerarios(request):
+    # lógica para mostrar itinerarios
+    return render(request, 'blog/lista_itinerarios.html')
