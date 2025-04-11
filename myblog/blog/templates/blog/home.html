@@ -1,6 +1,21 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block content %}
-<h2>Bienvenidos a TRAVELIANDO - Un blog para armar tu viaje perfecto</h2>
-<p>Explora nuestras opciones de transporte, alojamiento y actividades.</p>
+<div class="container py-5" style="background-color: #FEF6E7;">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+            <h1 class="mb-4" style="color: #2FCFC0;">Bienvenidos a TRAVELIANDO</h1>
+            <p class="lead" style="color: #622BD9;">
+                Un blog para armar tu viaje perfecto. Explorá nuestras opciones de transporte, alojamiento y actividades.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <img src="{% static 'images/traveliando-img.jpg' %}" alt="Imagen decorativa">
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+

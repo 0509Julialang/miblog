@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     #'blog',
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Esto permite que Django encuentre tu carpeta "static/"
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -137,3 +141,5 @@ TEMPLATES = [
         },
     },
 ]
+
+STATIC_URL = '/static/'
