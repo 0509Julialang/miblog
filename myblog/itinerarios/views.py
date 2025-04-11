@@ -6,11 +6,12 @@ from .forms import ItinerarioForm
 def home(request):
     return render(request, 'itinerarios/lista.html')
 
-
+@login_required
 def lista_itinerarios(request):
     itinerarios = Itinerario.objects.filter(creado_por=request.user)
     return render(request, 'itinerarios/lista.html', {'itinerarios': itinerarios})
 
+@login_required
 def crear_itinerario(request):
     if request.method == 'POST':
         form = ItinerarioForm(request.POST)
@@ -23,7 +24,7 @@ def crear_itinerario(request):
         form = ItinerarioForm()
     return render(request, 'itinerarios/formulario.html', {'form': form})
 
-
+@login_required
 def editar_itinerario(request, pk):
     itinerario = get_object_or_404(Itinerario, pk=pk, creado_por=request.user)
     if request.method == 'POST':
@@ -35,7 +36,7 @@ def editar_itinerario(request, pk):
         form = ItinerarioForm(instance=itinerario)
     return render(request, 'itinerarios/formulario.html', {'form': form})
 
-
+@login_required
 def eliminar_itinerario(request, pk):
     itinerario = get_object_or_404(Itinerario, pk=pk, creado_por=request.user)
     if request.method == 'POST':
@@ -43,6 +44,7 @@ def eliminar_itinerario(request, pk):
         return redirect('itinerarios:lista')
     return render(request, 'itinerarios/confirmar_eliminar.html', {'itinerario': itinerario})
 
+@login_required
 def detalle_itinerario(request, pk):
     itinerario = get_object_or_404(Itinerario, pk=pk)
     return render(request, 'itinerarios/detalle.html', {'itinerario': itinerario})
