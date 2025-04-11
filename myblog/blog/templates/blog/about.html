@@ -1,13 +1,30 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}¿Quiénes somos? | Traveliando{% endblock %}
+
 {% block content %}
-<h1> TRAVELIANDO - ¿Quienes somos? un equipo que busca armar tu viaje perfecto</h1>
-<p> Generando un programa que ofrezca distintos
-    hospedajes, medios de transporte, excursiones, y
-    lugares para comer. Personalizado según sus
-    gustos, para así brindarle opciones relacionadas a
-    sus necesidades.
-    
-    Contará con una sección de busquedas de Actividades, en donde se
-    organizará la información de las busquedas a través de un
-    viaje ilustrado en un organigrama.</p>
+<div class="container text-center mt-5">
+    <h1 class="mb-4" style="color: #2FCFC0;">¿Quiénes somos?</h1>
+    <h3 class="mb-4" style="color: #2FCFC0;"> Un equipo que busca armar tu viaje perfecto</h3>
+
+    <!-- Imagen decorativa -->
+    <img src="{% static 'images/traveliandoabout1.jpg' %}" alt="traveliandoabout" class="img-fluid rounded shadow mb-5">
+
+    <div class="text-start px-3 px-md-5">
+        <p>
+            Generamos un programa que te ofrece una variedad de <strong>hospedajes</strong>, <strong>medios de transporte</strong>,
+            <strong>excursiones</strong> y <strong>lugares para comer</strong>, todo personalizado según tus gustos,
+            para brindarte opciones relacionadas a tus necesidades.
+        </p>
+        <p>
+            Nuestra plataforma incluye una <strong>sección de búsqueda de actividades</strong>, donde se organiza toda la información
+            en una única pantalla fácil de explorar.
+        </p>
+        <p>
+            Además, contamos con una sección de <strong>itinerarios</strong>, donde podés decirnos tus preferencias para que nuestro equipo
+            te arme el viaje de tus sueños.
+        </p>
+    </div>
+</div>
 {% endblock %}

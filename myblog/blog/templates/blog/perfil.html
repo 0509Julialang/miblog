@@ -6,7 +6,7 @@
 <h2>Perfil de {{ perfil.usuario.username }}</h2>
 <div>
     {% if perfil.imagen %}
-        <img src="{{ perfil.imagen.url }}" alt="Foto de perfil" class="img-thumbnail mb-3" style="max-width: 200px;">
+        <img src="{{ perfil.imagen.url }}" alt="Foto de perfil">
     {% endif %}
     <p>Teléfono: {{ perfil.telefono }}</p>
     <p>Dirección: {{ perfil.direccion }}</p>
