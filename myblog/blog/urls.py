@@ -7,24 +7,34 @@ from django.contrib.auth import views as auth_views
 from blog import views as blog_views
 from itinerarios import views as itinerarios_views
 
-
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('admin/', admin.site.urls),
+
+    # Página principal
+    path('', blog_views.home, name='home'),
+
+    # Auth
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('logout/', views.logout_view, name='logout'),
-    path('registro/', views.registro_view, name='registro'),
-    path('perfil/', views.perfil, name='perfil'),
-    path('perfil/editar/', views.editar_perfil, name='editar_perfil'),
-    path('agregar_transporte/', views.agregar_transporte, name='agregar_transporte'),
-    path('agregar_alojamiento/', views.agregar_alojamiento, name='agregar_alojamiento'),
-    path('agregar_actividades/', views.agregar_actividades, name='agregar_actividades'),
-    path('perfil/', views.detalle_perfil, name='detalle_perfil'),
-    path('detalle_perfil/', views.detalle_perfil, name='detalle_perfil'),
-    path('buscar/', views.buscar, name='buscar'),
-    path('about/', views.about, name='about'),
-    ] 
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),  # Cierra sesión y redirige
+
+    path('registro/', blog_views.registro_view, name='registro'),
+
+    # Perfil
+    path('perfil/', blog_views.perfil, name='perfil'),
+    path('perfil/editar/', blog_views.editar_perfil, name='editar_perfil'),
+    path('detalle_perfil/', blog_views.detalle_perfil, name='detalle_perfil'),
+
+    # Funcionalidades del blog
+    path('agregar_transporte/', blog_views.agregar_transporte, name='agregar_transporte'),
+    path('agregar_alojamiento/', blog_views.agregar_alojamiento, name='agregar_alojamiento'),
+    path('agregar_actividades/', blog_views.agregar_actividades, name='agregar_actividades'),
+    path('buscar/', blog_views.buscar, name='buscar'),
+    path('about/', blog_views.about, name='about'),
+
+    # Itinerarios
+    path('itinerarios/', include('itinerarios.urls')),
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-     
+

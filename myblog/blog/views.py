@@ -17,7 +17,7 @@ def mi_vista_protegida(request):
     pass
  
 def home(request):
-     return render(request, 'blog/base.html')
+     return render(request, 'blog/home.html')
  
 def about(request):
      return render(request,  'blog/about.html', {'title': 'Acerca de'})
