@@ -35,7 +35,7 @@ class Actividades(models.Model):
     
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='perfiles/', blank=True, null=True)
+    imagen = models.ImageField(upload_to='perfil_pics/', default='perfil_pics/default.jpg', blank=True, null=True)
     nombre = models.CharField(max_length=100, blank=True)  
     apellido = models.CharField(max_length=100, blank=True) 
     bio = models.TextField(blank=True) 

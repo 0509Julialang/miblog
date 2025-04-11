@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block title %}Perfil de Usuario{% endblock %}
 
@@ -6,14 +7,11 @@
 <h2>Perfil de {{ perfil.usuario.username }}</h2>
 <div>
     {% if perfil.imagen %}
-        <img src="{{ perfil.imagen.url }}" alt="Foto de perfil">
-    {% endif %}
+    <img src="{{ perfil.imagen.url }}" class="rounded-circle" alt="Foto de perfil" style="width: 150px; height: 150px; object-fit: cover;">
+{% endif %}
     <p>Teléfono: {{ perfil.telefono }}</p>
     <p>Dirección: {{ perfil.direccion }}</p>
     <p>Fecha de nacimiento: {{ perfil.fecha_nacimiento }}</p>
     <a href="{% url 'editar_perfil' %}" class="btn btn-primary">Editar Perfil</a>
 </div>
-
-<h3>Tus Reservas</h3>
-<!-- Aquí puedes mostrar las reservas relacionadas con Transportes, Alojamientos y Actividades -->
 {% endblock %}
