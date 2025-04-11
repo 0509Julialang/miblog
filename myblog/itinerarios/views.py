@@ -8,8 +8,8 @@ def home(request):
 
 
 def lista_itinerarios(request):
-    return render(request, 'itinerarios/lista.html')
-
+    itinerarios = Itinerario.objects.filter(creado_por=request.user)
+    return render(request, 'itinerarios/lista.html', {'itinerarios': itinerarios})
 
 def crear_itinerario(request):
     if request.method == 'POST':
